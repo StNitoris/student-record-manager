@@ -1,4 +1,4 @@
-# Student Information Manager
+﻿# Student Information Manager
 
 This project provides a simple C++ console program for managing student records stored in a binary file using an object-oriented design.
 

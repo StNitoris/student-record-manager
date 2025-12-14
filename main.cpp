@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cctype>
 #include <fstream>
 #include <iostream>
 #include <limits>
@@ -50,10 +51,13 @@ public:
             return false;
         }
 
-        student.name_.resize(nameSize);
-        if (!in.read(student.name_.data(), static_cast<std::streamsize>(nameSize))) {
-            return false;
+        std::string buffer(nameSize, '\0');
+        if (nameSize > 0) {
+            if (!in.read(&buffer[0], static_cast<std::streamsize>(nameSize))) {
+                return false;
+            }
         }
+        student.name_.swap(buffer);
 
         if (!in.read(reinterpret_cast<char *>(&student.age_), sizeof(student.age_))) {
             return false;
